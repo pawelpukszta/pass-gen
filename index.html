@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Password Generator</title>
+  <meta name="description" content="Generator and checker for passwords that comply with a strict password policy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <h1><i class="mark" aria-hidden="true"></i>Password Generator</h1>
+        <p class="lead">Passwords that comply with a strict password policy: random, or easy-to-remember sentences and phrases made of English or Polish words. Every password is checked against the rules before you see it.</p>
+        <span class="privacy">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Everything happens in your browser. Passwords are never sent or stored anywhere.
+        </span>
+      </div>
+      <div class="tabs" role="tablist" aria-label="View">
+        <button class="tab" role="tab" id="tab-gen" aria-controls="view-gen" aria-selected="true">Generator</button>
+        <button class="tab" role="tab" id="tab-check" aria-controls="view-check" aria-selected="false">Check password</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="main">
+        <!-- Generator view -->
+        <section id="view-gen" role="tabpanel" aria-labelledby="tab-gen" class="main">
+          <div class="shell shell-hero"><div class="result core">
+          <div class="result-head">
+            <div class="seg" role="group" aria-label="Password type">
+              <button type="button" data-mode="random" aria-pressed="true">Random</button>
+              <button type="button" data-mode="sentence" aria-pressed="false">Sentence</button>
+              <button type="button" data-mode="words" aria-pressed="false">Words</button>
+              <button type="button" data-mode="slang" aria-pressed="false" title="Warning: potentially offensive content">Slang <span class="warn-mark" aria-hidden="true">!</span><span class="sr"> (warning: potentially offensive content)</span></button>
+            </div>
+            <p class="mode-desc" id="mode-desc"></p>
+          </div>
+            <p class="eyebrow"><i class="dot" aria-hidden="true"></i>Your password</p>
+            <p class="pw" id="pw-main" aria-live="polite"></p>
+            <p class="hint" id="pw-hint"></p>
+            <p class="help leet-legend" id="leet-legend" hidden>l33t: a→4 · e→3 · i→1 · o→0 · s→5 · t→7 · b→8 · g→9 (first letter of each word unchanged)</p>
+            <div class="glossary" id="glossary" hidden>
+              <p class="eyebrow">Glossary</p>
+              <dl id="glossary-list"></dl>
+              <p class="help">The explanations are our own. The link leads to full definitions on miejski.pl; opening it reveals one word of the password to that site. If you plan to keep this password, do not click, or generate a new one.</p>
+            </div>
+            <p class="fit-note" id="fit-note" role="status" hidden></p>
+            <div class="actions">
+              <button class="btn primary island" id="btn-gen" type="button">
+                Generate new
+                <span class="btn-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+              </button>
+              <button class="btn island" id="btn-copy" type="button">
+                <span>Copy</span>
+                <span class="btn-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>
+              </button>
+            </div>
+            <div class="strength">
+              <div class="meter" id="meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="strength-row">
+                <span class="has-pop" data-pop="pop-strength">Strength: <strong id="lvl-label"></strong>
+                  <button type="button" class="info-btn" aria-expanded="false" aria-controls="pop-strength" aria-label="Why this strength and how to increase it">?</button>
+                  <span class="pop pop-start" id="pop-strength" role="region" aria-label="Password strength explained" hidden></span>
+                </span>
+                <span class="has-pop" data-pop="pop-entropy">Entropy <strong id="bits"></strong>
+                  <button type="button" class="info-btn" aria-expanded="false" aria-controls="pop-entropy" aria-label="What entropy is">?</button>
+                  <span class="pop pop-end" id="pop-entropy" role="region" aria-label="Entropy explained" hidden></span>
+                </span>
+              </div>
+              <p class="crack" id="crack-time"></p>
+              <p class="tip" id="tip"></p>
+            </div>
+          </div></div>
+
+          <div class="shell settings-card" data-reveal><div class="opts-wrap core">
+            <h2>Settings</h2>
+            <label class="check lang-toggle" id="lang-row"><input type="checkbox" id="opt-polish"> Polish words <span class="help">(English by default)</span></label>
+            <div class="length-row" id="length-row">
+              <div class="length-head">
+                <span id="len-mode-label">Password length</span>
+                <div class="seg seg-sm" role="group" aria-labelledby="len-mode-label">
+                  <button type="button" data-len-mode="auto" aria-pressed="true">From generator</button>
+                  <button type="button" data-len-mode="custom" aria-pressed="false">Custom range</button>
+                </div>
+              </div>
+              <p class="help" id="len-auto-info"></p>
+              <div class="dual-range" id="len-custom" hidden>
+                <p class="dual-range-value">from <output id="len-min-out" for="len-min"></output> to <output id="len-max-out" for="len-max"></output> characters</p>
+                <div class="dual-range-track" id="len-track">
+                  <div class="dual-range-fill" id="len-fill"></div>
+                  <div class="dual-range-policy" id="len-policy" title="Minimum required by the policy"></div>
+                  <input type="range" id="len-min" min="8" max="100" step="1" aria-label="Password length from">
+                  <input type="range" id="len-max" min="8" max="100" step="1" aria-label="Password length to">
+                </div>
+                <div class="dual-range-scale" aria-hidden="true"><span>8</span><span>100</span></div>
+                <p class="help"><span class="policy-swatch" aria-hidden="true"></span> Mark on the slider: 14 characters, the minimum required by the policy.</p>
+              </div>
+            </div>
+            <!-- Sentence options -->
+            <div class="opts" data-opts="sentence">
+              <label class="check"><input type="checkbox" id="s-adj"> Adjectives</label>
+              <label class="check"><input type="checkbox" id="s-adv"> Adverb</label>
+              <label class="check"><input type="checkbox" id="s-place"> Place</label>
+                          <label class="field"><span>Digits in the number</span>
+                <select id="s-digits"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+              <label class="field"><span>Number position</span>
+                <select id="s-numpos"><option value="end">At the end</option><option value="random">At a random position</option></select></label>
+              <label class="field"><span>Word separator</span>
+                <select id="s-sep"><option value="">None (CamelCase)</option><option value="-">Hyphen -</option><option value=".">Dot .</option><option value="_">Underscore _</option></select></label>
+              <label class="field"><span>Special characters</span>
+                <select id="s-spec"><option value="none">None</option><option value="number">One, next to the number</option><option value="word">One, next to a random word</option><option value="separator">Instead of separators</option></select></label>
+              <label class="field"><span>l33t: letters → digits</span>
+                <select id="s-leet"><option value="none">None</option><option value="one">One substitution per word</option><option value="random">Random substitutions</option><option value="all">All (a→4, e→3…)</option></select></label>
+            </div>
+            <!-- Words options -->
+            <div class="opts" data-opts="words" hidden>
+              <label class="field"><span>Number of words</span>
+                <select id="w-count"><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+              <label class="field"><span>Capital letters</span>
+                <select id="w-caps"><option value="each">Each word capitalized</option><option value="one">One word in CAPITALS</option></select></label>
+              <label class="field"><span>Digits in the number</span>
+                <select id="w-digits"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+              <label class="field"><span>Number position</span>
+                <select id="w-numpos"><option value="end">At the end</option><option value="random">At a random position</option></select></label>
+              <label class="field"><span>Word separator</span>
+                <select id="w-sep"><option value="">None</option><option value="-">Hyphen -</option><option value=".">Dot .</option><option value="_">Underscore _</option></select></label>
+              <label class="field"><span>Special characters</span>
+                <select id="w-spec"><option value="none">None</option><option value="number">One, next to the number</option><option value="word">One, next to a random word</option><option value="separator">Instead of separators</option></select></label>
+              <label class="field"><span>l33t: letters → digits</span>
+                <select id="w-leet"><option value="none">None</option><option value="one">One substitution per word</option><option value="random">Random substitutions</option><option value="all">All (a→4, e→3…)</option></select></label>
+            </div>
+            <!-- Slang options -->
+            <div class="opts" data-opts="slang" hidden>
+              <p class="warn-box" role="note"><strong>Warning: potentially offensive content.</strong> The words come from Polish slang and colloquial speech (inspired by Miejski Słownik Slangu, miejski.pl). Profanity appears only after you tick the option below.</p>
+              <label class="field"><span>Slang words</span>
+                <select id="sl-count"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+              <label class="field"><span>Ordinary words</span>
+                <select id="sl-extra"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+              <label class="field"><span>Capital letters</span>
+                <select id="sl-caps"><option value="each">Each word capitalized</option><option value="one">One word in CAPITALS</option></select></label>
+              <label class="field"><span>Digits in the number</span>
+                <select id="sl-digits"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+              <label class="field"><span>Number position</span>
+                <select id="sl-numpos"><option value="end">At the end</option><option value="random">At a random position</option></select></label>
+              <label class="field"><span>Word separator</span>
+                <select id="sl-sep"><option value="">None</option><option value="-">Hyphen -</option><option value=".">Dot .</option><option value="_">Underscore _</option></select></label>
+              <label class="field"><span>Special characters</span>
+                <select id="sl-spec"><option value="none">None</option><option value="number">One, next to the number</option><option value="word">One, next to a random word</option><option value="separator">Instead of separators</option></select></label>
+              <label class="field"><span>l33t: letters → digits</span>
+                <select id="sl-leet"><option value="none">None</option><option value="one">One substitution per word</option><option value="random">Random substitutions</option><option value="all">All (a→4, e→3…)</option></select></label>
+              <label class="check check-warn"><input type="checkbox" id="sl-vulgar"> Allow profanity (18+)</label>
+            </div>
+            <!-- Random options -->
+            <div class="opts" data-opts="random" hidden>
+              <div class="field" style="grid-column: 1 / -1">
+                <span id="r-len-label">Password length (at least 14 recommended: required by the policy)</span>
+                <span class="range-row">
+                  <input type="range" id="r-len" min="8" max="64" step="1" aria-labelledby="r-len-label">
+                  <input type="number" id="r-len-num" class="len-num" min="8" max="64" step="1" inputmode="numeric" aria-labelledby="r-len-label">
+                  <output id="r-len-out" for="r-len" hidden></output>
+                </span>
+              </div>
+              <div class="field" style="grid-column: 1 / -1">
+                <span id="charset-label">Characters used</span>
+                <div class="charsets" role="group" aria-labelledby="charset-label">
+                  <label class="chip locked" title="Required by the policy"><input type="checkbox" checked disabled> <span class="glyph">ABC</span> uppercase</label>
+                  <label class="chip locked" title="Required by the policy"><input type="checkbox" checked disabled> <span class="glyph">abc</span> lowercase</label>
+                  <label class="chip locked" title="Required by the policy"><input type="checkbox" checked disabled> <span class="glyph">123</span> digits</label>
+                  <label class="chip"><input type="checkbox" id="r-special"> <span class="glyph">#$&amp;</span> special</label>
+                </div>
+                <span class="help">Uppercase and lowercase letters and digits are always on, because the policy requires them.</span>
+              </div>
+              <label class="check"><input type="checkbox" id="r-noambig"> No similar characters (I, l, 1, O, 0)</label>
+              <label class="field"><span>Minimum special characters</span>
+                <select id="r-minspec"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+            </div>
+            <p class="length-warn" id="length-warn" role="status" hidden></p>
+          <label class="field spec-field" for="specials"><span>Allowed special characters</span></label>
+            <input type="text" id="specials" class="mono-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="specials-help">
+            <p class="help" id="specials-help"></p>
+          </div></div>
+
+          <div class="shell alts-card" data-reveal><div class="alts core">
+            <h2>Other suggestions</h2>
+            <ul id="alts"></ul>
+          </div></div>
+        </section>
+
+        <!-- Checker view -->
+        <section id="view-check" role="tabpanel" aria-labelledby="tab-check" class="shell" hidden data-reveal>
+          <div class="checker core">
+          <label class="field" for="chk-input"><span>Password to check</span></label>
+          <div class="input-row">
+            <input type="password" id="chk-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type or paste a password">
+            <button class="btn" type="button" id="chk-toggle" aria-pressed="false">Show</button>
+          </div>
+          <div class="verdict" id="chk-verdict" aria-live="polite">Enter a password and the rules on the right will show what is fine and what needs fixing.</div>
+          <div class="stats" id="chk-stats" hidden></div>
+          <p class="help">On a shared computer, do not type your current password here. Checking works locally, but anyone standing next to you can see the screen.</p>
+          </div>
+        </section>
+      </div>
+
+      <aside class="panel shell" aria-labelledby="rules-h" data-reveal style="--d:1">
+        <div class="core panel-core">
+        <div>
+          <h2 id="rules-h">Policy compliance</h2>
+          <p class="panel-sub" id="rules-for">For the generated password</p>
+        </div>
+        <ul class="rules" id="rules"></ul>
+        <p class="help" id="rules-note">The generator always includes a digit, an uppercase and a lowercase letter, so those rules are not shown here. You can check them in the "Check password" tab.</p>
+        <div class="divider"></div>
+        <label class="field"><span>Username</span>
+          <input type="text" id="ctx-user" placeholder="e.g. john.smith" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+        <label class="field"><span>Blocked terms</span>
+          <textarea id="ctx-blocked" spellcheck="false" placeholder="e.g. organization or service name"></textarea></label>
+        <p class="help">One term per line. Letter case and substitutions such as 4→a, 0→o, 1→i do not matter.</p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="notes" aria-labelledby="notes-h" data-reveal>
+      <div class="notes-head">
+        <span class="eyebrow">Under the hood</span>
+        <h2 id="notes-h">How it works</h2>
+      </div>
+      <div class="notes-body">
+      <p>Randomness comes from <code>crypto.getRandomValues</code>, the browser's cryptographic generator. Only the settings, the username and the list of terms are remembered, and only in this browser.</p>
+      <p>Entropy is the number of bits of uncertainty, assuming the attacker knows the word lists and your settings. Each extra bit doubles the number of guesses needed to find the password.</p>
+      <p>The weak password list contains the most common Polish and English passwords. The target system may have a longer one, so the generator avoids them with a margin. The rule about the previous 10 passwords is checked only by the system: every generated password is new.</p>
+      <p>English words in the "Words" mode come from the <a href="https://www.eff.org/dice" target="_blank" rel="noopener noreferrer">EFF Large Wordlist</a> (Electronic Frontier Foundation, licensed under <a href="https://creativecommons.org/licenses/by/3.0/us/" target="_blank" rel="noopener noreferrer">CC BY 3.0 US</a>).</p>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

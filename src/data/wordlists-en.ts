@@ -1,0 +1,171 @@
+/**
+ * English word lists for the memorable sentence mode (default language).
+ *
+ * Sentence template: [ADJ] SUBJECT [ADVERB] VERB [ADJ] OBJECT [PLACE] NUMBER,
+ * e.g. "Grumpy pirate quietly polishes golden teapot on the roof 472".
+ * Articles are omitted on purpose (headline style) so any combination reads naturally.
+ *
+ * When editing: keep each list free of duplicates and avoid words from the weak
+ * password list (e.g. dragon, monkey, secret, summer); tests enforce ASCII-only words.
+ */
+
+/** Adjectives (244) */
+export const EN_ADJECTIVES: readonly string[] = [
+  'brave', 'sleepy', 'grumpy', 'fluffy', 'tiny', 'giant', 'ancient', 'rusty', 'shiny', 'purple',
+  'orange', 'golden', 'silver', 'crimson', 'velvet', 'wooden', 'frozen', 'spicy', 'sour', 'bitter',
+  'salty', 'sweet', 'crunchy', 'soggy', 'curious', 'clumsy', 'polite', 'rude', 'noisy', 'silent',
+  'lazy', 'busy', 'fancy', 'humble', 'proud', 'gentle', 'fierce', 'jolly', 'gloomy', 'cheerful',
+  'nervous', 'calm', 'wild', 'tame', 'hairy', 'bald', 'bearded', 'spotted', 'striped', 'fuzzy',
+  'smooth', 'rough', 'sticky', 'slippery', 'dusty', 'muddy', 'foggy', 'rainy', 'sunny', 'windy',
+  'stormy', 'snowy', 'icy', 'fiery', 'electric', 'magnetic', 'cosmic', 'lunar', 'solar', 'royal',
+  'noble', 'clever', 'witty', 'sneaky', 'honest', 'loyal', 'famous', 'mysterious', 'magical',
+  'cursed', 'haunted', 'lucky', 'unlucky', 'hungry', 'thirsty', 'sleepless', 'dizzy', 'tired',
+  'eager', 'grateful', 'jealous', 'anxious', 'brilliant', 'dazzling', 'glowing', 'sparkling',
+  'twinkling', 'flickering', 'wobbly', 'crooked', 'square', 'round', 'flat', 'hollow', 'heavy',
+  'soft', 'warm', 'cold', 'cool', 'tropical', 'arctic', 'plastic', 'rubber', 'paper', 'glass',
+  'iron', 'copper', 'bronze', 'marble', 'granite', 'woolen', 'silken', 'leather', 'porcelain',
+  'crystal', 'amber', 'emerald', 'coral', 'lemon', 'cherry', 'minty', 'vanilla', 'chocolate',
+  'peppery', 'smoky', 'fizzy', 'bubbly', 'greasy', 'crispy', 'toasted', 'roasted', 'frosty',
+  'misty', 'cloudy', 'starry', 'invisible', 'enormous', 'mighty', 'puny', 'chubby', 'skinny',
+  'tall', 'short', 'young', 'elderly', 'modern', 'vintage', 'antique', 'retro', 'digital',
+  'mechanical', 'robotic', 'inflatable', 'foldable', 'portable', 'squeaky', 'rattling', 'buzzing',
+  'humming', 'whistling', 'dancing', 'singing', 'flying', 'floating', 'sleeping', 'laughing',
+  'grinning', 'blushing', 'sulking', 'stubborn', 'patient', 'punctual', 'tardy', 'rebellious',
+  'cautious', 'reckless', 'daring', 'timid', 'shy', 'bold', 'bossy', 'cranky', 'quirky', 'zany',
+  'goofy', 'silly', 'serious', 'solemn', 'majestic', 'elegant', 'scruffy', 'tidy', 'messy',
+  'glittery', 'metallic', 'neon', 'pastel', 'scarlet', 'turquoise', 'indigo', 'violet', 'maroon',
+  'beige', 'ivory', 'olive', 'khaki', 'wise', 'grand', 'fragile', 'sturdy', 'cozy', 'chilly',
+  'breezy', 'dreamy', 'grouchy', 'nimble', 'plucky', 'feisty', 'spotless', 'tangled', 'tattered',
+  'shabby', 'polished', 'gleaming', 'rumpled', 'wrinkled', 'lopsided', 'cheeky', 'sassy', 'snoopy',
+  'thrifty', 'wealthy', 'weary', 'zesty',
+];
+
+/** People, animals and creatures (singular) (237) */
+export const EN_SUBJECTS: readonly string[] = [
+  'pirate', 'wizard', 'knight', 'baker', 'farmer', 'sailor', 'captain', 'astronaut', 'detective',
+  'plumber', 'carpenter', 'blacksmith', 'gardener', 'fisherman', 'firefighter', 'postman', 'chef',
+  'waiter', 'butler', 'librarian', 'professor', 'inventor', 'explorer', 'magician', 'juggler',
+  'clown', 'acrobat', 'drummer', 'guitarist', 'violinist', 'poet', 'painter', 'sculptor', 'dancer',
+  'actor', 'singer', 'banker', 'lawyer', 'judge', 'sheriff', 'cowboy', 'samurai', 'ninja', 'viking',
+  'gladiator', 'pharaoh', 'emperor', 'sultan', 'duke', 'baron', 'king', 'prince', 'queen', 'witch',
+  'vampire', 'zombie', 'ghost', 'goblin', 'troll', 'ogre', 'gnome', 'dwarf', 'robot', 'cyborg',
+  'alien', 'monk', 'hermit', 'nomad', 'shepherd', 'hunter', 'ranger', 'scout', 'pilot', 'diver',
+  'surfer', 'skier', 'climber', 'cyclist', 'boxer', 'wrestler', 'referee', 'coach', 'grandpa',
+  'grandma', 'uncle', 'aunt', 'cousin', 'neighbor', 'toddler', 'teenager', 'intern', 'accountant',
+  'dentist', 'surgeon', 'nurse', 'barber', 'tailor', 'cobbler', 'potter', 'weaver', 'miner',
+  'lumberjack', 'beekeeper', 'zookeeper', 'janitor', 'mechanic', 'electrician', 'architect',
+  'engineer', 'scientist', 'chemist', 'botanist', 'geologist', 'astronomer', 'historian',
+  'philosopher', 'mayor', 'spy', 'thief', 'bandit', 'smuggler', 'jester', 'bard', 'minstrel', 'cat',
+  'dog', 'fox', 'wolf', 'bear', 'badger', 'beaver', 'otter', 'raccoon', 'squirrel', 'hamster',
+  'rabbit', 'mouse', 'rat', 'mole', 'hedgehog', 'porcupine', 'skunk', 'moose', 'elk', 'deer',
+  'bison', 'buffalo', 'camel', 'llama', 'alpaca', 'donkey', 'horse', 'pony', 'zebra', 'giraffe',
+  'elephant', 'rhino', 'hippo', 'lion', 'tiger', 'leopard', 'cheetah', 'jaguar', 'panther',
+  'gorilla', 'chimp', 'lemur', 'sloth', 'koala', 'kangaroo', 'wombat', 'platypus', 'penguin',
+  'puffin', 'parrot', 'owl', 'eagle', 'hawk', 'falcon', 'raven', 'crow', 'pigeon', 'sparrow',
+  'robin', 'flamingo', 'pelican', 'swan', 'goose', 'duck', 'turkey', 'rooster', 'peacock',
+  'ostrich', 'emu', 'walrus', 'seal', 'dolphin', 'whale', 'shark', 'octopus', 'squid', 'lobster',
+  'crab', 'shrimp', 'snail', 'slug', 'spider', 'beetle', 'ant', 'bee', 'wasp', 'moth', 'butterfly',
+  'frog', 'toad', 'lizard', 'gecko', 'iguana', 'turtle', 'tortoise', 'crocodile', 'alligator',
+  'snake', 'cobra', 'python', 'unicorn', 'griffin', 'yeti', 'kraken', 'phoenix', 'goat', 'sheep',
+  'ram', 'bull', 'cow', 'pig', 'hen',
+];
+
+/** Adverbs and short adverbial phrases (84) */
+export const EN_ADVERBS: readonly string[] = [
+  'quietly', 'loudly', 'quickly', 'slowly', 'gently', 'proudly', 'bravely', 'sneakily', 'lazily',
+  'eagerly', 'happily', 'sadly', 'angrily', 'calmly', 'nervously', 'carefully', 'carelessly',
+  'clumsily', 'gracefully', 'politely', 'rudely', 'suddenly', 'rarely', 'often', 'always',
+  'sometimes', 'daily', 'weekly', 'nightly', 'early', 'late', 'boldly', 'shyly', 'wildly', 'madly',
+  'gladly', 'softly', 'firmly', 'neatly', 'messily', 'cheerfully', 'gloomily', 'grumpily',
+  'sleepily', 'hungrily', 'greedily', 'kindly', 'wisely', 'foolishly', 'patiently', 'anxiously',
+  'cautiously', 'recklessly', 'playfully', 'seriously', 'solemnly', 'joyfully', 'briskly',
+  'merrily', 'silently', 'swiftly', 'noisily', 'elegantly', 'awkwardly', 'stubbornly',
+  'dramatically', 'mysteriously', 'magically', 'accidentally', 'deliberately', 'reluctantly',
+  'enthusiastically', 'every Tuesday', 'after lunch', 'before bedtime', 'with style', 'with gusto',
+  'without a word', 'twice a day', 'on purpose', 'by accident', 'in a hurry', 'once a year',
+  'every morning',
+];
+
+/** Transitive verbs, 3rd person singular (143) */
+export const EN_VERBS: readonly string[] = [
+  'paints', 'eats', 'borrows', 'steals', 'polishes', 'juggles', 'sells', 'buys', 'hides', 'finds',
+  'loses', 'carries', 'drags', 'pushes', 'throws', 'catches', 'kicks', 'lifts', 'holds', 'squeezes',
+  'hugs', 'tickles', 'washes', 'dries', 'irons', 'cleans', 'scrubs', 'draws', 'sketches',
+  'photographs', 'measures', 'weighs', 'counts', 'inspects', 'admires', 'studies', 'tests',
+  'repairs', 'builds', 'assembles', 'dismantles', 'glues', 'sews', 'knits', 'packs', 'unpacks',
+  'delivers', 'mails', 'ships', 'tows', 'smuggles', 'plants', 'waters', 'picks', 'slices', 'bakes',
+  'fries', 'boils', 'grills', 'roasts', 'toasts', 'salts', 'sweetens', 'freezes', 'melts', 'heats',
+  'cools', 'lights', 'launches', 'winds', 'tunes', 'wraps', 'unwraps', 'rolls', 'folds', 'bends',
+  'twists', 'shakes', 'rocks', 'swings', 'buries', 'digs', 'tracks', 'guards', 'protects',
+  'rescues', 'invents', 'designs', 'prints', 'scans', 'copies', 'decorates', 'arranges', 'hangs',
+  'opens', 'closes', 'locks', 'unlocks', 'sharpens', 'hammers', 'drills', 'sands', 'varnishes',
+  'welds', 'rents', 'collects', 'trades', 'sniffs', 'licks', 'chews', 'nibbles', 'swallows',
+  'tosses', 'spins', 'flips', 'stacks', 'sorts', 'labels', 'stamps', 'balances', 'inflates',
+  'deflates', 'feeds', 'teleports', 'clones', 'hypnotizes', 'enchants', 'upgrades', 'recycles',
+  'auctions', 'donates', 'hoards', 'organizes', 'misplaces', 'forgets', 'remembers', 'ignores',
+  'serenades', 'photocopies', 'smashes', 'tames', 'chases', 'guzzles',
+];
+
+/** Concrete things (singular) (323) */
+export const EN_OBJECTS: readonly string[] = [
+  'umbrella', 'teapot', 'kettle', 'bicycle', 'cheese', 'sandwich', 'pancake', 'waffle', 'pretzel',
+  'cupcake', 'muffin', 'doughnut', 'pizza', 'burrito', 'taco', 'noodle', 'dumpling', 'pickle',
+  'carrot', 'potato', 'onion', 'cabbage', 'pumpkin', 'melon', 'banana', 'mango', 'lemon', 'coconut',
+  'pineapple', 'cherry', 'acorn', 'walnut', 'peanut', 'hammer', 'wrench', 'screwdriver', 'shovel',
+  'rake', 'ladder', 'bucket', 'barrel', 'basket', 'backpack', 'suitcase', 'wallet', 'purse',
+  'helmet', 'hat', 'scarf', 'sweater', 'jacket', 'sock', 'boot', 'slipper', 'glove', 'mitten',
+  'necktie', 'bowtie', 'cape', 'cloak', 'crown', 'tiara', 'wig', 'monocle', 'compass', 'telescope',
+  'microscope', 'magnet', 'lantern', 'candle', 'torch', 'flashlight', 'lamp', 'chandelier', 'clock',
+  'calendar', 'globe', 'map', 'atlas', 'notebook', 'pencil', 'crayon', 'marker', 'eraser', 'ruler',
+  'stapler', 'envelope', 'parcel', 'postcard', 'ticket', 'receipt', 'trophy', 'medal', 'ribbon',
+  'banner', 'flag', 'kite', 'balloon', 'boomerang', 'frisbee', 'skateboard', 'scooter', 'wagon',
+  'tractor', 'bulldozer', 'submarine', 'rocket', 'satellite', 'canoe', 'raft', 'sailboat', 'yacht',
+  'tugboat', 'trumpet', 'trombone', 'tuba', 'violin', 'cello', 'banjo', 'ukulele', 'harmonica',
+  'accordion', 'drum', 'tambourine', 'xylophone', 'piano', 'harp', 'flute', 'whistle', 'gong',
+  'bell', 'doorbell', 'mailbox', 'toaster', 'blender', 'mixer', 'microwave', 'fridge', 'freezer',
+  'oven', 'stove', 'sofa', 'armchair', 'hammock', 'cushion', 'pillow', 'blanket', 'quilt', 'carpet',
+  'rug', 'curtain', 'mirror', 'window', 'doorknob', 'chimney', 'fireplace', 'radiator', 'fan',
+  'vacuum', 'laptop', 'keyboard', 'joystick', 'gadget', 'gizmo', 'widget', 'battery', 'cable',
+  'antenna', 'radio', 'camera', 'projector', 'microphone', 'statue', 'fountain', 'castle',
+  'lighthouse', 'windmill', 'tent', 'cabin', 'treehouse', 'sandcastle', 'cactus', 'tulip',
+  'sunflower', 'mushroom', 'pinecone', 'seashell', 'pebble', 'boulder', 'diamond', 'sapphire',
+  'pearl', 'nugget', 'coin', 'treasure', 'jar', 'bottle', 'mug', 'cup', 'saucer', 'bowl', 'plate',
+  'spoon', 'fork', 'ladle', 'spatula', 'whisk', 'colander', 'funnel', 'sponge', 'towel', 'soap',
+  'toothbrush', 'comb', 'hairbrush', 'perfume', 'lipstick', 'anchor', 'paddle', 'oar', 'sail',
+  'rope', 'chain', 'padlock', 'key', 'vault', 'puzzle', 'domino', 'dice', 'chessboard', 'jigsaw',
+  'doll', 'puppet', 'mask', 'costume', 'easel', 'canvas', 'sculpture', 'poster', 'painting',
+  'photograph', 'album', 'dictionary', 'novel', 'comic', 'newspaper', 'magazine', 'letter', 'diary',
+  'scroll', 'potion', 'wand', 'cauldron', 'broomstick', 'horseshoe', 'saddle', 'wheelbarrow',
+  'sled', 'snowball', 'icicle', 'meteor', 'comet', 'asteroid', 'pudding', 'jelly', 'custard',
+  'omelet', 'sausage', 'meatball', 'burger', 'hotdog', 'popcorn', 'cracker', 'biscuit', 'croissant',
+  'bagel', 'baguette', 'cookie', 'brownie', 'lollipop', 'marshmallow', 'caramel', 'honey', 'jam',
+  'ketchup', 'mustard', 'mayonnaise', 'butter', 'yogurt', 'smoothie', 'lemonade', 'milkshake',
+  'cocoa', 'espresso', 'cappuccino', 'teacup', 'tuxedo', 'sombrero', 'kazoo', 'bagpipe',
+  'hourglass', 'sundial', 'thermometer', 'barometer', 'abacus', 'typewriter',
+  'gramophone', 'jukebox', 'carousel', 'trampoline', 'parachute', 'zeppelin', 'blimp', 'catapult',
+  'cannon', 'shield', 'sword', 'dagger', 'spear', 'bow', 'arrow', 'quiver', 'armor',
+];
+
+/** Where or when the action happens (102) */
+export const EN_PLACES: readonly string[] = [
+  'on the roof', 'in the attic', 'under the bridge', 'by the river', 'in the basement',
+  'in the kitchen', 'in the garden', 'on the moon', 'on Mars', 'in the library', 'at the museum',
+  'at the opera', 'in the cinema', 'at the market', 'in the bakery', 'in the garage',
+  'on the balcony', 'in the elevator', 'on the stairs', 'on the train', 'in the subway',
+  'at the station', 'at the harbor', 'on a ship', 'in a submarine', 'under water', 'in the clouds',
+  'on a rainbow', 'in the castle', 'in the dungeon', 'in the maze', 'in the greenhouse',
+  'in the barn', 'on the farm', 'in the orchard', 'in the park', 'on the beach', 'at the stadium',
+  'on the ice rink', 'in the sauna', 'in the shower', 'in the bathtub', 'in bed',
+  'under the blanket', 'in a drawer', 'in a pocket', 'in the desert', 'in the jungle',
+  'at the North Pole', 'in an igloo', 'on a volcano', 'in a crater', 'on the summit',
+  'in the valley', 'by the lake', 'by the fireplace', 'by the campfire', 'at midnight', 'at dawn',
+  'at sunset', 'in the fog', 'in a blizzard', 'on a carousel', 'at the circus', 'on stage',
+  'backstage', 'in the laboratory', 'at the observatory', 'in the lighthouse', 'on the pier',
+  'in a beehive', 'in a treehouse', 'under a mushroom', 'in the aquarium', 'on a trampoline',
+  'in a rocket', 'on the sofa', 'in the pantry', 'in the cellar', 'in the gazebo',
+  'in the town square', 'in a tunnel', 'under the bed', 'in a treasure chest',
+  'in the windmill', 'on the bridge', 'at the zoo', 'in the forest', 'in a cave', 'on a cloud',
+  'at the bus stop', 'in the parking lot', 'at the dentist', 'at the barber', 'in the bank',
+  'at the post office', 'in the courtroom', 'at the bowling alley', 'at the ballet', 'in the swamp',
+  'on the glacier', 'in the canyon',
+];
